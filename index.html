@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haruto | Personal Portfolio</title>
+    <meta
+      name="description"
+      content="Haruto-ийн хувийн танилцуулга, үйлчилгээ, төслүүд, чадвар болон холбоо барих хэсэг."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav container">
+        <a href="#home" class="brand">Haruto<span>.</span></a>
+        <button class="menu-btn" id="menuBtn" aria-label="Цэс нээх">☰</button>
+        <ul class="menu" id="menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Service</a></li>
+          <li><a href="#projects">Project</a></li>
+          <li><a href="#skills">Skill</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section container" id="home">
+        <div class="hero__content">
+          <p class="section-kicker">Welcome</p>
+          <h1>Hello Everyone I'm Haruto</h1>
+          <p>
+            Би web developer бөгөөд dark modern интерфэйстэй, хурдан бөгөөд
+            responsive вебсайт хөгжүүлдэг.
+          </p>
+          <div class="stats">
+            <article>
+              <h3>10+</h3>
+              <p>Project хийсэн</p>
+            </article>
+            <article>
+              <h3>1+</h3>
+              <p>Жилийн туршлага</p>
+            </article>
+            <article>
+              <h3>04+</h3>
+              <p>Active clients</p>
+            </article>
+          </div>
+          <div class="hero__actions">
+            <a href="#contact" class="btn btn-primary">Hire me</a>
+            <a href="#projects" class="btn btn-outline">Download CV</a>
+          </div>
+          <div class="social-links" aria-label="Social links">
+            <a href="https://www.facebook.com/l.buantogtoh.791855" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/buyn_1014?igsh=Z3RoMzcxbzZjOHRy&utm_source=qr" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://github.com/lhagvabuyna96-lgtm" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="phone-card">
+            <span class="badge">Responsive</span>
+            <div class="phone-screen">
+              <img src="./assets/home-profile.png" alt="Haruto profile" />
+            </div>
+            <button class="btn btn-small">View details</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="about section container" id="about">
+        <div class="panel art-box">
+          <img src="./assets/about-profile.png" alt="Haruto about profile" />
+        </div>
+        <div class="panel about__content">
+          <h2>About me</h2>
+          <p>
+            Сайн уу, би Haruto. Миний зорилго бол бизнес болон хувь хүн бүрт
+            зориулсан website бүтээх. Front-end хөгжүүлэлт дээр
+            төвлөрөн, хэрэглэгчдэд ойлгомжтой, цэвэр бөгөөд хурдан интерфэйс
+            хийдэг.
+          </p>
+          <div class="info-list">
+            <div class="info-item">📍 Миний байршил: Ulaanbaatar, Mongolia</div>
+            <div class="info-item">📞 Миний утас: +976 8088 0236</div>
+            <div class="info-item">📧 Миний mail: lhagvabuyna96@gmail.com</div>
+          </div>
+          <a class="btn btn-outline" href="#contact">Download CV</a>
+        </div>
+      </section>
+
+      <section class="section container" id="services">
+        <h2 class="section-title">My Services</h2>
+        <div class="grid cards-3">
+          <article class="panel card">
+            <h3>Web Development</h3>
+            <p>
+              Орчин үеийн, SEO-д ээлтэй, өндөр гүйцэтгэлтэй вэбсайт хөгжүүлэлт.
+            </p>
+          </article>
+          <article class="panel card">
+            <h3>UI/UX Design</h3>
+            <p>
+              Хэрэглэгч төвтэй бүтэц, clean layout болон өндөр conversion дизайн.
+            </p>
+          </article>
+          <article class="panel card">
+            <h3>Landing Page</h3>
+            <p>Борлуулалт болон сурталчилгаанд зориулсан хурдан landing page.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="projects">
+        <h2 class="section-title">Latest Project</h2>
+        <div class="grid cards-3">
+          <article class="panel project-card">
+            <div class="thumb">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <h3>Calculator App</h3>
+            <p>Dark theme энгийн calculator төсөл.</p>
+          </article>
+          <article class="panel project-card">
+            <div class="thumb">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <h3>Portfolio Clone</h3>
+            <p>Responsive portfolio UI reconstruction.</p>
+          </article>
+          <article class="panel project-card">
+            <div class="thumb">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <h3>Business Site</h3>
+            <p>Танилцуулга website for small business.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="skills">
+        <h2 class="section-title">My Skill</h2>
+        <div class="skills-grid">
+          <span class="skill"><i class="skill-icon devicon-html5-plain"></i>HTML</span>
+          <span class="skill"><i class="skill-icon devicon-css3-plain"></i>CSS</span>
+          <span class="skill"><i class="skill-icon devicon-javascript-plain"></i>JavaScript</span>
+          <span class="skill"><i class="skill-icon devicon-php-plain"></i>PHP</span>
+          <span class="skill"><i class="skill-icon devicon-python-plain"></i>Python</span>
+          <span class="skill"><i class="skill-icon devicon-mysql-plain"></i>MySQL</span>
+          <span class="skill"><i class="skill-icon devicon-csharp-plain"></i>C#</span>
+        </div>
+      </section>
+
+      <section class="section container contact" id="contact">
+        <div class="panel">
+          <h2>Contact <span>Me</span></h2>
+          <p>
+            Төслийн санал, хамтын ажиллагаа, эсвэл шууд чатлах бол message үлдээнэ
+            үү. Тантай хамтрахад таатай байна.
+          </p>
+          
+        </div>
+        <form class="panel form">
+          <h3>Send <span>Email</span></h3>
+          <input type="text" placeholder="Your name" required />
+          <input type="email" placeholder="Your email" required />
+          <textarea rows="4" placeholder="What do you need?" required></textarea>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© <span id="year"></span> Haruto. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
