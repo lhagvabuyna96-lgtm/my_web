@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="mn">
   <head>
     <meta charset="UTF-8" />
@@ -27,54 +27,135 @@
   <body>
     <header class="header">
       <nav class="nav container">
-        <a href="#home" class="brand">Haruto<span>.</span></a>
-        <button class="menu-btn" id="menuBtn" aria-label="Цэс нээх">☰</button>
-        <ul class="menu" id="menu">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Service</a></li>
-          <li><a href="#projects">Project</a></li>
-          <li><a href="#skills">Skill</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <a href="#home" class="brand"><span id="siteBrandName">Haruto</span><span>.</span></a>
+        <div class="nav__actions">
+          <button class="menu-btn" id="menuBtn" aria-label="Цэс нээх">☰</button>
+          <ul class="menu" id="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Service</a></li>
+            <li><a href="#projects">Project</a></li>
+            <li><a href="#skills">Skill</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <div class="header-more" id="headerMore">
+            <button
+              type="button"
+              class="more-btn"
+              id="moreBtn"
+              aria-label="Нэмэлт цэс"
+              aria-expanded="false"
+              aria-controls="headerMorePanel"
+              aria-haspopup="true"
+            >
+              <span class="more-btn__bar" aria-hidden="true"></span>
+              <span class="more-btn__bar" aria-hidden="true"></span>
+              <span class="more-btn__bar" aria-hidden="true"></span>
+            </button>
+            <div
+              class="header-more__panel"
+              id="headerMorePanel"
+              role="menu"
+              aria-label="Нэмэлт цэс"
+              hidden
+            >
+              <div class="header-more__guest" id="moreGuestSection">
+                <button
+                  type="button"
+                  class="header-more__item"
+                  id="moreOpenLogin"
+                  role="menuitem"
+                  aria-expanded="false"
+                  aria-controls="authPanel"
+                >
+                  <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+                  Нэвтрэх
+                </button>
+                <a href="./dashboard.html" class="header-more__item" role="menuitem" data-close-more>
+                  <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+                  Edit
+                </a>
+                <div class="header-more__login" id="authPanel" role="dialog" aria-label="Админ нэвтрэх" hidden>
+                  <form id="adminLoginForm" class="header-auth__form" novalidate>
+                    <p class="header-auth__hint">Зөвхөн админ эрхтэй хэрэглэгч</p>
+                    <label class="sr-only" for="adminUser">Хэрэглэгчийн нэр</label>
+                    <input
+                      id="adminUser"
+                      name="username"
+                      type="text"
+                      autocomplete="username"
+                      placeholder="Хэрэглэгчийн нэр"
+                      required
+                    />
+                    <label class="sr-only" for="adminPass">Нууц үг</label>
+                    <input
+                      id="adminPass"
+                      name="password"
+                      type="password"
+                      autocomplete="current-password"
+                      placeholder="Нууц үг"
+                      required
+                    />
+                    <p class="header-auth__error" id="authError" role="alert" hidden></p>
+                    <button type="submit" class="btn btn-primary btn-tiny">Нэвтрэх</button>
+                  </form>
+                </div>
+              </div>
+              <div class="header-more__admin" id="moreAdminSection" hidden>
+                <p class="header-more__status">
+                  <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                  Админ эрхээр нэвтэрсэн
+                </p>
+                <a href="./dashboard.html" class="header-more__item" role="menuitem" data-close-more>
+                  <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+                  Edit
+                </a>
+                <button type="button" class="header-more__item" id="authLogout" role="menuitem">
+                  <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
+                  Гарах
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </nav>
     </header>
 
     <main>
       <section class="hero section container" id="home">
         <div class="hero__content">
-          <p class="section-kicker">Welcome</p>
-          <h1>Hello Everyone I'm Haruto</h1>
-          <p>
+          <p class="section-kicker" id="edHeroKicker">Welcome</p>
+          <h1 id="edHeroTitle">Hello Everyone I'm Haruto</h1>
+          <p id="edHeroIntro">
             Би web developer бөгөөд dark modern интерфэйстэй, хурдан бөгөөд
             responsive вебсайт хөгжүүлдэг.
           </p>
           <div class="stats">
             <article>
-              <h3>10+</h3>
-              <p>Project хийсэн</p>
+              <h3 id="edStat0v">10+</h3>
+              <p id="edStat0l">Project хийсэн</p>
             </article>
             <article>
-              <h3>1+</h3>
-              <p>Жилийн туршлага</p>
+              <h3 id="edStat1v">1+</h3>
+              <p id="edStat1l">Жилийн туршлага</p>
             </article>
             <article>
-              <h3>04+</h3>
-              <p>Active clients</p>
+              <h3 id="edStat2v">04+</h3>
+              <p id="edStat2l">Active clients</p>
             </article>
           </div>
           <div class="hero__actions">
-            <a href="#contact" class="btn btn-primary">Hire me</a>
-            <a href="#projects" class="btn btn-outline">Download CV</a>
+            <a href="#contact" class="btn btn-primary" id="edCtaHire">Hire me</a>
+            <a href="#projects" class="btn btn-outline" id="edCtaCv">Download CV</a>
           </div>
           <div class="social-links" aria-label="Social links">
-            <a href="https://www.facebook.com/l.buantogtoh.791855" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/l.buantogtoh.791855" id="edSocialFb" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-facebook-f"></i>
             </a>
-            <a href="https://www.instagram.com/buyn_1014?igsh=Z3RoMzcxbzZjOHRy&utm_source=qr" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/buyn_1014?igsh=Z3RoMzcxbzZjOHRy&utm_source=qr" id="edSocialIg" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="https://github.com/lhagvabuyna96-lgtm" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/lhagvabuyna96-lgtm" id="edSocialGh" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-github"></i>
             </a>
           </div>
@@ -82,39 +163,39 @@
 
         <div class="hero__visual">
           <div class="phone-card">
-            <span class="badge">Responsive</span>
+            <span class="badge" id="edPhoneBadge">Responsive</span>
             <div class="phone-screen">
-              <img src="./assets/home-profile.png" alt="Haruto profile" />
+              <img id="edHeroImg" src="./assets/home-profile.png" alt="Haruto profile" />
             </div>
-            <button class="btn btn-small">View details</button>
+            <button type="button" class="btn btn-small" id="edPhoneBtn">View details</button>
           </div>
         </div>
       </section>
 
       <section class="about section container" id="about">
         <div class="panel art-box">
-          <img src="./assets/about-profile.png" alt="Haruto about profile" />
+          <img id="edAboutImg" src="./assets/about-profile.png" alt="Haruto about profile" />
         </div>
         <div class="panel about__content">
-          <h2>About me</h2>
-          <p>
+          <h2 id="edAboutHeading">About me</h2>
+          <p id="edAboutBody">
             Сайн уу, би Haruto. Миний зорилго бол бизнес болон хувь хүн бүрт
             зориулсан website бүтээх. Front-end хөгжүүлэлт дээр
             төвлөрөн, хэрэглэгчдэд ойлгомжтой, цэвэр бөгөөд хурдан интерфэйс
             хийдэг.
           </p>
           <div class="info-list">
-            <div class="info-item">📍 Миний байршил: Ulaanbaatar, Mongolia</div>
-            <div class="info-item">📞 Миний утас: +976 8088 0236</div>
-            <div class="info-item">📧 Миний mail: lhagvabuyna96@gmail.com</div>
+            <div class="info-item" id="edAboutLoc">📍 Миний байршил: Ulaanbaatar, Mongolia</div>
+            <div class="info-item" id="edAboutPhone">📞 Миний утас: +976 8088 0236</div>
+          
           </div>
-          <a class="btn btn-outline" href="#contact">Download CV</a>
+          <a class="btn btn-outline" href="#contact" id="edAboutCv">Download CV</a>
         </div>
       </section>
 
       <section class="section container" id="services">
-        <h2 class="section-title">My Services</h2>
-        <div class="grid cards-3">
+        <h2 class="section-title" id="edServicesTitle">My Services</h2>
+        <div class="grid cards-3" id="edServicesGrid">
           <article class="panel card">
             <h3>Web Development</h3>
             <p>
@@ -135,59 +216,41 @@
       </section>
 
       <section class="section container" id="projects">
-        <h2 class="section-title">Latest Project</h2>
-        <div class="grid cards-3">
-          <article class="panel project-card">
-            <div class="thumb">
-              <i class="fa-solid fa-calculator"></i>
-            </div>
-            <h3>Calculator App</h3>
-            <p>Dark theme энгийн calculator төсөл.</p>
-          </article>
-          <article class="panel project-card">
-            <div class="thumb">
-              <i class="fa-solid fa-code"></i>
-            </div>
-            <h3>Portfolio Clone</h3>
-            <p>Responsive portfolio UI reconstruction.</p>
-          </article>
-          <article class="panel project-card">
-            <div class="thumb">
-              <i class="fa-solid fa-briefcase"></i>
-            </div>
-            <h3>Business Site</h3>
-            <p>Танилцуулга website for small business.</p>
-          </article>
-        </div>
+        <h2 class="section-title" id="edProjectsTitle">Latest Project</h2>
+        <div class="grid projects-grid" id="edProjectsGrid"></div>
       </section>
 
       <section class="section container" id="skills">
-        <h2 class="section-title">My Skill</h2>
-        <div class="skills-grid">
-          <span class="skill"><i class="skill-icon devicon-html5-plain"></i>HTML</span>
-          <span class="skill"><i class="skill-icon devicon-css3-plain"></i>CSS</span>
-          <span class="skill"><i class="skill-icon devicon-javascript-plain"></i>JavaScript</span>
-          <span class="skill"><i class="skill-icon devicon-php-plain"></i>PHP</span>
-          <span class="skill"><i class="skill-icon devicon-python-plain"></i>Python</span>
-          <span class="skill"><i class="skill-icon devicon-mysql-plain"></i>MySQL</span>
-          <span class="skill"><i class="skill-icon devicon-csharp-plain"></i>C#</span>
-        </div>
+        <h2 class="section-title" id="edSkillsTitle">My Skill</h2>
+        <div class="skills-grid" id="edSkillsGrid"></div>
       </section>
 
       <section class="section container contact" id="contact">
         <div class="panel">
           <h2>Contact <span>Me</span></h2>
-          <p>
+          <p id="edContactIntro">
             Төслийн санал, хамтын ажиллагаа, эсвэл шууд чатлах бол message үлдээнэ
             үү. Тантай хамтрахад таатай байна.
           </p>
           
         </div>
-        <form class="panel form">
+        <form
+          id="edContactForm"
+          class="panel form"
+          action="https://formsubmit.co/lhagvabuyna96@gmail.com"
+          method="POST"
+        >
           <h3>Send <span>Email</span></h3>
-          <input type="text" placeholder="Your name" required />
-          <input type="email" placeholder="Your email" required />
-          <textarea rows="4" placeholder="What do you need?" required></textarea>
+          <input type="hidden" id="edFormSubject" name="_subject" value="New portfolio contact message" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <textarea
+            name="message"
+            rows="4"
+            placeholder="What do you need?"
+            required
+          ></textarea>
           <button type="submit" class="btn btn-primary">Send</button>
         </form>
       </section>
@@ -195,10 +258,11 @@
 
     <footer class="footer">
       <div class="container">
-        <p>© <span id="year"></span> Haruto. All rights reserved.</p>
+        <p>© <span id="year"></span> <span id="edFooterOwner">Haruto</span>. All rights reserved.</p>
       </div>
     </footer>
 
+    <script src="./site-content.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

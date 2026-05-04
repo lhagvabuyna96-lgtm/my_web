@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Haruto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="dashboard-body">
+    <div class="dashboard-page">
+      <header class="dashboard-page__header">
+        <div class="dashboard-page__bar dashboard-page__bar--flush">
+          <a href="./index.html" class="dashboard-page__back">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            Буцах
+          </a>
+        </div>
+      </header>
+      <main class="dashboard-page__main">
+        <div class="container">
+          <div id="dashDenied" class="panel dashboard-page__panel" hidden>
+            <h1 class="dashboard-page__title">Нэвтрэх шаардлагатай</h1>
+            <p class="dashboard-page__lead">
+              Портфолио дээр More → Нэвтрэх-ээр админ эрхээр нэвтэрсний дараа энд дахин орно уу.
+            </p>
+            <a class="btn btn-primary" href="./index.html">Буцах</a>
+          </div>
+        </div>
+
+        <div id="dashAllowed" class="dashboard-allowed" hidden>
+          <div class="dashboard-layout dashboard-layout--flush">
+            <aside class="dashboard-sidebar" aria-label="Dashboard хэсгүүд">
+              <nav class="dashboard-nav">
+                <a href="#dash-section-general" class="dashboard-nav__link">Ерөнхий</a>
+                <a href="#dash-section-hero" class="dashboard-nav__link">Hero</a>
+                <a href="#dash-section-about" class="dashboard-nav__link">About</a>
+                <a href="#dash-section-titles" class="dashboard-nav__link">Хэсгийн гарчиг</a>
+                <a href="#dash-section-services" class="dashboard-nav__link">Үйлчилгээ</a>
+                <a href="#dash-section-projects" class="dashboard-nav__link">Latest Project</a>
+                <a href="#dash-section-skills" class="dashboard-nav__link">My Skill</a>
+                <a href="#dash-section-contact" class="dashboard-nav__link">Холбоо барих</a>
+                <a href="#dash-section-footer" class="dashboard-nav__link">Footer</a>
+              </nav>
+            </aside>
+            <div class="dashboard-content">
+              <div class="panel dashboard-page__panel dash-intro">
+                <h1 class="dashboard-page__title">Агуулга засах</h1>
+                <p class="dashboard-page__lead dash-intro__text">
+                  Өөрчлөлтүүд таны хөтөчийн <strong>localStorage</strong>-д хадгалагдана. Портфолио хуудсыг
+                  дахин ачаалахад шинэчлэгдэнэ. (Өөр компьютер / өөр хөтөч дээр харагдахгүй.)
+                </p>
+                <div class="dash-intro__actions">
+                  <a class="btn btn-outline" href="./index.html" target="_blank" rel="noopener noreferrer">
+                    Портфолио нээх
+                  </a>
+                </div>
+              </div>
+
+              <p id="dashToast" class="dash-toast" role="status" hidden></p>
+
+              <form id="dashForm" class="dash-form">
+            <fieldset id="dash-section-general" class="dash-fieldset dash-scroll-target">
+              <legend>Ерөнхий</legend>
+              <div class="dash-grid dash-grid--2">
+                <label class="dash-label">Хуудасны гарчиг (title)</label>
+                <input class="dash-input" type="text" id="dash_meta_title" required />
+                <label class="dash-label">Meta тайлбар</label>
+                <textarea class="dash-input dash-textarea" id="dash_meta_desc" rows="2"></textarea>
+                <label class="dash-label">Брэнд нэр (лого ойролцоо)</label>
+                <input class="dash-input" type="text" id="dash_brand" />
+              </div>
+            </fieldset>
+
+            <fieldset id="dash-section-hero" class="dash-fieldset dash-scroll-target">
+              <legend>Hero</legend>
+              <div class="dash-grid dash-grid--2">
+                <label class="dash-label">Kicker</label>
+                <input class="dash-input" type="text" id="dash_hero_kicker" />
+                <label class="dash-label">Гарчиг (h1)</label>
+                <input class="dash-input" type="text" id="dash_hero_title" />
+                <label class="dash-label">Танилцуулга</label>
+                <textarea class="dash-input dash-textarea" id="dash_hero_intro" rows="3"></textarea>
+              </div>
+              <p class="dash-hint">Статистик (3 мөр)</p>
+              <div class="dash-grid dash-grid--4">
+                <span class="dash-minihead">Утга 1</span>
+                <input class="dash-input" type="text" id="dash_stat_0_v" />
+                <span class="dash-minihead">Тайлбар 1</span>
+                <input class="dash-input" type="text" id="dash_stat_0_l" />
+                <span class="dash-minihead">Утга 2</span>
+                <input class="dash-input" type="text" id="dash_stat_1_v" />
+                <span class="dash-minihead">Тайлбар 2</span>
+                <input class="dash-input" type="text" id="dash_stat_1_l" />
+                <span class="dash-minihead">Утга 3</span>
+                <input class="dash-input" type="text" id="dash_stat_2_v" />
+                <span class="dash-minihead">Тайлбар 3</span>
+                <input class="dash-input" type="text" id="dash_stat_2_l" />
+              </div>
+              <div class="dash-grid dash-grid--2 dash-grid--mt">
+                <label class="dash-label">Товч «Hire me»</label>
+                <input class="dash-input" type="text" id="dash_cta_hire" />
+                <label class="dash-label">Товч «Download CV» (hero)</label>
+                <input class="dash-input" type="text" id="dash_cta_cv" />
+                <label class="dash-label">Утасны карт — badge</label>
+                <input class="dash-input" type="text" id="dash_phone_badge" />
+                <label class="dash-label">Утасны карт — товч</label>
+                <input class="dash-input" type="text" id="dash_phone_btn" />
+                <label class="dash-label">Зураг (URL эсвэл зам)</label>
+                <input class="dash-input" type="text" id="dash_hero_img" />
+                <label class="dash-label">Зургийн alt</label>
+                <input class="dash-input" type="text" id="dash_hero_img_alt" />
+              </div>
+              <p class="dash-hint">Social холбоосууд</p>
+              <div class="dash-grid dash-grid--2">
+                <label class="dash-label">Facebook</label>
+                <input class="dash-input" type="url" id="dash_social_fb" />
+                <label class="dash-label">Instagram</label>
+                <input class="dash-input" type="url" id="dash_social_ig" />
+                <label class="dash-label">GitHub</label>
+                <input class="dash-input" type="url" id="dash_social_gh" />
+              </div>
+            </fieldset>
+
+            <fieldset id="dash-section-about" class="dash-fieldset dash-scroll-target">
+              <legend>About</legend>
+              <div class="dash-grid dash-grid--2">
+                <label class="dash-label">Зураг</label>
+                <input class="dash-input" type="text" id="dash_about_img" />
+                <label class="dash-label">Зургийн alt</label>
+                <input class="dash-input" type="text" id="dash_about_img_alt" />
+                <label class="dash-label">Гарчиг</label>
+                <input class="dash-input" type="text" id="dash_about_heading" />
+                <label class="dash-label">Текст</label>
+                <textarea class="dash-input dash-textarea" id="dash_about_body" rows="4"></textarea>
+                <label class="dash-label">Байршил (мөр)</label>
+                <input class="dash-input" type="text" id="dash_about_loc" />
+                <label class="dash-label">Утас (мөр)</label>
+                <input class="dash-input" type="text" id="dash_about_phone" />
+                <label class="dash-label">Товч «Download CV»</label>
+                <input class="dash-input" type="text" id="dash_about_cv" />
+              </div>
+            </fieldset>
+
+            <fieldset id="dash-section-titles" class="dash-fieldset dash-scroll-target">
+              <legend>Хэсгийн гарчиг</legend>
+              <div class="dash-grid dash-grid--2">
+                <label class="dash-label">Үйлчилгээ</label>
+                <input class="dash-input" type="text" id="dash_sec_services" />
+                <label class="dash-label">Төслүүд</label>
+                <input class="dash-input" type="text" id="dash_sec_projects" />
+                <label class="dash-label">Чадвар</label>
+                <input class="dash-input" type="text" id="dash_sec_skills" />
+              </div>
+            </fieldset>
+
+            <fieldset id="dash-section-services" class="dash-fieldset dash-scroll-target">
+              <legend>Үйлчилгээ (3 карт)</legend>
+              <div class="dash-cards-editor">
+                <div class="dash-card-block">
+                  <h3 class="dash-card-block__title">Карт 1</h3>
+                  <input class="dash-input" type="text" id="dash_svc_0_t" placeholder="Гарчиг" />
+                  <textarea class="dash-input dash-textarea" id="dash_svc_0_b" rows="2" placeholder="Тайлбар"></textarea>
+                </div>
+                <div class="dash-card-block">
+                  <h3 class="dash-card-block__title">Карт 2</h3>
+                  <input class="dash-input" type="text" id="dash_svc_1_t" />
+                  <textarea class="dash-input dash-textarea" id="dash_svc_1_b" rows="2"></textarea>
+                </div>
+                <div class="dash-card-block">
+                  <h3 class="dash-card-block__title">Карт 3</h3>
+                  <input class="dash-input" type="text" id="dash_svc_2_t" />
+                  <textarea class="dash-input dash-textarea" id="dash_svc_2_b" rows="2"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset id="dash-section-projects" class="dash-fieldset dash-fieldset--tagged dash-scroll-target">
+              <legend class="dash-legend-row">
+                <span class="dash-section-badge" title="Портфолио — Төслүүд">Төсөл</span>
+                <span class="dash-legend-title">Latest Project</span>
+              </legend>
+              <p class="dash-hint">
+                <strong>Төсөл нэмэх</strong> товчоор шинэ карт нэмнэ. Зураг сонговол зураг харуулна; зураггүй бол
+                доорх <em>Icon</em> (Font Awesome class) ашиглана. Жишээ:
+                <code>fa-solid fa-calculator</code>. Зураг: JPEG/PNG/WebP, ~1.5MB хүртэл.
+              </p>
+              <div id="dashProjectsList" class="dash-dynamic-list"></div>
+              <button type="button" class="btn btn-outline btn-tiny" id="dashAddProject">+ Төсөл нэмэх</button>
+            </fieldset>
+
+            <fieldset id="dash-section-skills" class="dash-fieldset dash-fieldset--tagged dash-scroll-target">
+              <legend class="dash-legend-row">
+                <span class="dash-section-badge" title="Портфолио — Чадвар">Чадвар</span>
+                <span class="dash-legend-title">My Skill</span>
+              </legend>
+              <p class="dash-hint">
+                <strong>Чадвар нэмэх</strong> товчоор шинэ мөр нэмнэ. Icon-д devicon эсвэл FA class оруулна уу. Жишээ:
+                <code>skill-icon devicon-html5-plain</code>
+              </p>
+              <div id="dashSkillsList" class="dash-dynamic-list"></div>
+              <button type="button" class="btn btn-outline btn-tiny" id="dashAddSkill">+ Чадвар нэмэх</button>
+            </fieldset>
+
+            <fieldset id="dash-section-contact" class="dash-fieldset dash-scroll-target">
+              <legend>Холбоо барих</legend>
+              <div class="dash-grid dash-grid--2">
+                <label class="dash-label">Танилцуулгын текст</label>
+                <textarea class="dash-input dash-textarea" id="dash_contact_intro" rows="3"></textarea>
+                <label class="dash-label">FormSubmit и-мэйл</label>
+                <input class="dash-input" type="email" id="dash_contact_email" />
+                <label class="dash-label">И-мэйлийн гарчиг (_subject)</label>
+                <input class="dash-input" type="text" id="dash_contact_subject" />
+              </div>
+            </fieldset>
+
+            <fieldset id="dash-section-footer" class="dash-fieldset dash-scroll-target">
+              <legend>Footer</legend>
+              <div class="dash-grid dash-grid--2">
+                <label class="dash-label">Эзэмшигчийн нэр</label>
+                <input class="dash-input" type="text" id="dash_footer_owner" />
+              </div>
+            </fieldset>
+
+            <div class="dash-form__actions panel">
+              <button type="submit" class="btn btn-primary">Хадгалах</button>
+              <button type="button" class="btn btn-outline" id="dashReset">Анхны агуулгаар сэргээх</button>
+            </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="./site-content.js"></script>
+    <script src="./dashboard.js"></script>
+  </body>
+</html>
