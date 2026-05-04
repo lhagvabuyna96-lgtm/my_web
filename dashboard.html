@@ -31,9 +31,11 @@
           <div id="dashDenied" class="panel dashboard-page__panel" hidden>
             <h1 class="dashboard-page__title">Нэвтрэх шаардлагатай</h1>
             <p class="dashboard-page__lead">
-              Портфолио дээр More → Нэвтрэх-ээр админ эрхээр нэвтэрсний дараа энд дахин орно уу.
+              <a href="./login.html?next=dashboard.html">login.html</a> хуудсаар админ эрхээр нэвтэрнэ үү, эсвэл
+              портфолио дээр More → Нэвтрэх.
             </p>
-            <a class="btn btn-primary" href="./index.html">Буцах</a>
+            <a class="btn btn-primary" href="./login.html?next=dashboard.html">Нэвтрэх</a>
+            <a class="btn btn-outline" href="./index.html">Портфолио</a>
           </div>
         </div>
 
@@ -241,6 +243,7 @@
         </div>
       </main>
     </div>
+    <script src="./auth-config.js"></script>
     <script src="./site-content.js"></script>
     <script src="./dashboard.js"></script>
   </body>

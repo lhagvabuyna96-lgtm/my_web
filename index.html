@@ -60,46 +60,19 @@
               hidden
             >
               <div class="header-more__guest" id="moreGuestSection">
-                <button
-                  type="button"
+                <a
+                  href="./login.html?next=dashboard.html"
                   class="header-more__item"
-                  id="moreOpenLogin"
                   role="menuitem"
-                  aria-expanded="false"
-                  aria-controls="authPanel"
+                  data-close-more
                 >
                   <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
                   Нэвтрэх
-                </button>
+                </a>
                 <a href="./dashboard.html" class="header-more__item" role="menuitem" data-close-more>
                   <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
                   Edit
                 </a>
-                <div class="header-more__login" id="authPanel" role="dialog" aria-label="Админ нэвтрэх" hidden>
-                  <form id="adminLoginForm" class="header-auth__form" novalidate>
-                    <p class="header-auth__hint">Зөвхөн админ эрхтэй хэрэглэгч</p>
-                    <label class="sr-only" for="adminUser">Хэрэглэгчийн нэр</label>
-                    <input
-                      id="adminUser"
-                      name="username"
-                      type="text"
-                      autocomplete="username"
-                      placeholder="Хэрэглэгчийн нэр"
-                      required
-                    />
-                    <label class="sr-only" for="adminPass">Нууц үг</label>
-                    <input
-                      id="adminPass"
-                      name="password"
-                      type="password"
-                      autocomplete="current-password"
-                      placeholder="Нууц үг"
-                      required
-                    />
-                    <p class="header-auth__error" id="authError" role="alert" hidden></p>
-                    <button type="submit" class="btn btn-primary btn-tiny">Нэвтрэх</button>
-                  </form>
-                </div>
               </div>
               <div class="header-more__admin" id="moreAdminSection" hidden>
                 <p class="header-more__status">
@@ -262,6 +235,7 @@
       </div>
     </footer>
 
+    <script src="./auth-config.js"></script>
     <script src="./site-content.js"></script>
     <script src="./script.js"></script>
   </body>

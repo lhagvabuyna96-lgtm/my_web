@@ -1,5 +1,5 @@
 (function () {
-  var SESSION_KEY = "haruto_portfolio_admin";
+  var SESSION_KEY = "haruto_token";
   var MAX_IMAGE_BYTES = 1.5 * 1024 * 1024;
 
   function $(id) {
@@ -482,7 +482,7 @@
     };
   }
 
-  var allowed = sessionStorage.getItem(SESSION_KEY) === "1";
+  var allowed = !!sessionStorage.getItem(SESSION_KEY);
   var elOk = $("dashAllowed");
   var elNo = $("dashDenied");
   if (!elOk || !elNo) return;

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Админ нэвтрэх | Haruto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="login-page-body">
+    <div class="login-page">
+      <header class="login-page__header">
+        <a href="./index.html" class="login-page__back">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+          Портфолио
+        </a>
+      </header>
+      <main class="login-page__main container">
+        <div class="panel login-page__panel">
+          <p class="login-page__kicker"><i class="fa-solid fa-user-shield" aria-hidden="true"></i> Админ</p>
+          <h1 class="login-page__title">Нэвтрэх</h1>
+          <p class="login-page__lead">Зөвхөн эзэмшигчийн эрхээр нэвтэрнэ үү.</p>
+
+          <form id="loginForm" class="login-page__form" novalidate>
+            <label class="dash-label" for="loginUser">Хэрэглэгчийн нэр</label>
+            <input
+              id="loginUser"
+              name="username"
+              type="text"
+              class="dash-input"
+              autocomplete="username"
+              placeholder="Хэрэглэгчийн нэр"
+              required
+            />
+            <label class="dash-label" for="loginPass">Нууц үг</label>
+            <input
+              id="loginPass"
+              name="password"
+              type="password"
+              class="dash-input"
+              autocomplete="current-password"
+              placeholder="Нууц үг"
+              required
+            />
+            <p id="loginError" class="login-page__error" role="alert" hidden></p>
+            <button type="submit" class="btn btn-primary login-page__submit">Нэвтрэх</button>
+          </form>
+        </div>
+      </main>
+    </div>
+    <script src="./auth-config.js"></script>
+    <script src="./login.js"></script>
+  </body>
+</html>
