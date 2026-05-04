@@ -1257,13 +1257,6 @@ body.dashboard-body {
   color: var(--accent);
 }
 
-.dash-form__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
-}
-
 .dash-fieldset--tagged {
   border-color: rgba(255, 59, 48, 0.22);
   box-shadow: 0 0 0 1px rgba(255, 59, 48, 0.06);

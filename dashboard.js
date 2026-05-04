@@ -577,13 +577,5 @@
 
   $("dashForm").addEventListener("submit", function (ev) {
     ev.preventDefault();
-    saveDashboardData("Хадгалагдлаа. Портфолио хуудсыг дахин ачаалбал өөрчлөлт харагдана.");
-  });
-
-  $("dashReset").addEventListener("click", function () {
-    if (!confirm("Бүх засварыг устгаж, анхны агуулгаар сэргээх үү?")) return;
-    localStorage.removeItem(HarutoSiteContent.STORAGE_KEY);
-    setForm(HarutoSiteContent.load());
-    showToast("Анхны агуулгад шилжлээ.");
   });
 })();

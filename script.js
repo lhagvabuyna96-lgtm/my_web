@@ -105,6 +105,150 @@ if (typeof HarutoSiteContent !== "undefined") {
   HarutoSiteContent.apply(HarutoSiteContent.load());
 }
 
+function escapeHtmlCv(text) {
+  return String(text ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function cvTextById(id) {
+  const el = document.getElementById(id);
+  return el ? el.textContent.trim().replace(/\s+/g, " ") : "";
+}
+
+function cvAttrById(id, attr) {
+  const el = document.getElementById(id);
+  return el ? String(el.getAttribute(attr) ?? "").trim() : "";
+}
+
+/** @param {"hero" | "about"} scope */
+function buildCvHtml(scope) {
+  const brand = cvTextById("siteBrandName") || "Portfolio";
+  const genDate = new Date().toLocaleDateString("mn-MN", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const scopeNote =
+    scope === "about" ? "About — хэсэг" : "Hero — эхний хэсэг";
+
+  const shell = (title, bodyInner) => `<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" lang="mn">
+<head>
+<meta charset="utf-8">
+<title>${escapeHtmlCv(title)}</title>
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View></w:WordDocument></xml><![endif]-->
+<style>
+body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#111;line-height:1.45;max-width:720px;}
+h1{font-size:22pt;margin:0 0 8px 0;}
+h2{font-size:14pt;margin:18px 0 8px 0;border-bottom:1px solid #ccc;padding-bottom:4px;}
+p{margin:0 0 10px 0;}
+table{border-collapse:collapse;width:100%;}
+ul{margin:8px 0 0 18px;}
+</style>
+</head>
+<body>
+<h1>${escapeHtmlCv(brand)}</h1>
+<p style="color:#555;font-size:10pt;margin:0 0 4px 0;">${escapeHtmlCv(genDate)}</p>
+<p style="color:#666;font-size:9pt;margin:0 0 16px 0;">${escapeHtmlCv(scopeNote)}</p>
+${bodyInner}
+<p style="margin-top:24px;font-size:9pt;color:#777;">Энэхүү баримт бичиг вебсайтын тухайн хэсгээс автоматаар үүсгэгдсэн.</p>
+</body>
+</html>`;
+
+  if (scope === "about") {
+    const aboutH = cvTextById("edAboutHeading");
+    const aboutBody = cvTextById("edAboutBody");
+    const loc = cvTextById("edAboutLoc");
+    const phone = cvTextById("edAboutPhone");
+    const aboutAlt = cvAttrById("edAboutImg", "alt");
+    const inner = `
+<h2>${escapeHtmlCv(aboutH || "About me")}</h2>
+<p>${escapeHtmlCv(aboutBody)}</p>
+<p>${escapeHtmlCv(loc)}</p>
+<p>${escapeHtmlCv(phone)}</p>
+${aboutAlt ? `<p style="font-size:10pt;color:#444;"><em>${escapeHtmlCv(aboutAlt)}</em></p>` : ""}`;
+    return shell(`${brand} — About`, inner);
+  }
+
+  const kicker = cvTextById("edHeroKicker");
+  const heroTitle = cvTextById("edHeroTitle");
+  const heroIntro = cvTextById("edHeroIntro");
+  const stats = [0, 1, 2].map((i) => ({
+    v: cvTextById("edStat" + i + "v"),
+    l: cvTextById("edStat" + i + "l"),
+  }));
+  const hireCta = cvTextById("edCtaHire");
+  const badge = cvTextById("edPhoneBadge");
+  const phoneBtn = cvTextById("edPhoneBtn");
+  const heroImgAlt = cvAttrById("edHeroImg", "alt");
+
+  let statsRows = "";
+  stats.forEach((s) => {
+    if (s.v || s.l) {
+      statsRows += `<tr><td style="padding:4px 12px 4px 0;border-bottom:1px solid #ddd;"><strong>${escapeHtmlCv(s.v)}</strong></td><td style="padding:4px 0;border-bottom:1px solid #ddd;">${escapeHtmlCv(s.l)}</td></tr>`;
+    }
+  });
+
+  const socialIds = ["edSocialFb", "edSocialIg", "edSocialGh"];
+  let socialLis = "";
+  socialIds.forEach((sid) => {
+    const el = document.getElementById(sid);
+    if (!el) return;
+    const href = (el.getAttribute("href") || "").trim();
+    const label = (el.getAttribute("aria-label") || sid).trim();
+    if (href) {
+      socialLis += `<li>${escapeHtmlCv(label)}: ${escapeHtmlCv(href)}</li>`;
+    }
+  });
+
+  const inner = `
+${kicker ? `<p style="font-size:10pt;letter-spacing:0.08em;text-transform:uppercase;color:#555;">${escapeHtmlCv(kicker)}</p>` : ""}
+<h2>${escapeHtmlCv(heroTitle || "Танилцуулга")}</h2>
+<p>${escapeHtmlCv(heroIntro)}</p>
+${statsRows ? `<h2>Статистик</h2><table>${statsRows}</table>` : ""}
+${hireCta ? `<h2>Үйлдэл</h2><p>${escapeHtmlCv(hireCta)}</p>` : ""}
+${socialLis ? `<h2>Сошиал холбоос</h2><ul>${socialLis}</ul>` : ""}
+<h2>Профайл зураг / карт</h2>
+<p>${escapeHtmlCv(badge)}${badge && phoneBtn ? " · " : ""}${escapeHtmlCv(phoneBtn)}</p>
+${heroImgAlt ? `<p style="font-size:10pt;color:#444;"><em>${escapeHtmlCv(heroImgAlt)}</em></p>` : ""}`;
+  return shell(`${brand} — Hero`, inner);
+}
+
+/** @param {"hero" | "about"} scope */
+function downloadCvAsWordDoc(scope) {
+  const html = buildCvHtml(scope);
+  const blob = new Blob(["\ufeff", html], {
+    type: "application/msword;charset=utf-8",
+  });
+  const rawName = (cvTextById("siteBrandName") || "CV").replace(/[^\w\u0400-\u04FF.-]+/g, "_");
+  const suffix = scope === "about" ? "About" : "Hero";
+  const filename = `${rawName || "CV"}_${suffix}_CV.doc`;
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.rel = "noopener";
+  document.body.appendChild(a);
+  a.click();
+  requestAnimationFrame(() => {
+    URL.revokeObjectURL(url);
+    a.remove();
+  });
+}
+
+document.querySelectorAll("[data-cv-section]").forEach((btn) => {
+  btn.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    const scope = btn.getAttribute("data-cv-section");
+    if (scope === "hero" || scope === "about") {
+      downloadCvAsWordDoc(scope);
+    }
+  });
+});
+
 // Add subtle reveal animation as sections/cards enter viewport.
 const revealTargets = document.querySelectorAll(
   ".section-title, .panel, .stats article, .skill, .hero__content, .phone-card"
