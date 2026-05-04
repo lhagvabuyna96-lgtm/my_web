@@ -422,6 +422,48 @@
     });
   }
 
+  function saveDashboardData(successMessage) {
+    try {
+      var data = readForm();
+      var def = HarutoSiteContent.defaults();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact.formSubmitEmail)) {
+        data.contact.formSubmitEmail = def.contact.formSubmitEmail;
+      }
+      if (!data.skills.length) {
+        data.skills = def.skills.map(function (s) {
+          return { label: s.label, iconClass: s.iconClass };
+        });
+      }
+      if (!data.projects.length) {
+        data.projects = def.projects.map(function (p) {
+          return {
+            iconClass: p.iconClass,
+            title: p.title,
+            body: p.body,
+            imageUrl: p.imageUrl || "",
+          };
+        });
+      }
+      try {
+        HarutoSiteContent.save(data);
+      } catch (e) {
+        if (e && (e.name === "QuotaExceededError" || e.code === 22)) {
+          showToast(
+            "Хадгалах зай хүрэлцэхгүй байна. Том зургуудыг багасгаад дахин оролдоно уу.",
+            true
+          );
+          return false;
+        }
+        throw e;
+      }
+      showToast(successMessage || "Хадгалагдлаа. Портфолио хуудсыг дахин ачаалбал өөрчлөлт харагдана.");
+      return true;
+    } catch (err) {
+      showToast(err.message || "Хадгалахад алдаа гарлаа.", true);
+      return false;
+    }
+  }
+
   function readForm() {
     return {
       meta: {
@@ -525,45 +567,17 @@
     });
   }
 
+  document.querySelectorAll(".dash-section-save").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var label = (btn.getAttribute("data-section-label") || "").trim();
+      var msg = label ? "«" + label + "» хэсэг хадгалагдлаа." : "Хэсэг хадгалагдлаа.";
+      saveDashboardData(msg);
+    });
+  });
+
   $("dashForm").addEventListener("submit", function (ev) {
     ev.preventDefault();
-    try {
-      var data = readForm();
-      var def = HarutoSiteContent.defaults();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact.formSubmitEmail)) {
-        data.contact.formSubmitEmail = def.contact.formSubmitEmail;
-      }
-      if (!data.skills.length) {
-        data.skills = def.skills.map(function (s) {
-          return { label: s.label, iconClass: s.iconClass };
-        });
-      }
-      if (!data.projects.length) {
-        data.projects = def.projects.map(function (p) {
-          return {
-            iconClass: p.iconClass,
-            title: p.title,
-            body: p.body,
-            imageUrl: p.imageUrl || "",
-          };
-        });
-      }
-      try {
-        HarutoSiteContent.save(data);
-      } catch (e) {
-        if (e && (e.name === "QuotaExceededError" || e.code === 22)) {
-          showToast(
-            "Хадгалах зай хүрэлцэхгүй байна. Том зургуудыг багасгаад дахин оролдоно уу.",
-            true
-          );
-          return;
-        }
-        throw e;
-      }
-      showToast("Хадгалагдлаа. Портфолио хуудсыг дахин ачаалбал өөрчлөлт харагдана.");
-    } catch (err) {
-      showToast(err.message || "Хадгалахад алдаа гарлаа.", true);
-    }
+    saveDashboardData("Хадгалагдлаа. Портфолио хуудсыг дахин ачаалбал өөрчлөлт харагдана.");
   });
 
   $("dashReset").addEventListener("click", function () {

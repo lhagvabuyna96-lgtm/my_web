@@ -1,5 +1,6 @@
 const A = typeof window !== "undefined" && window.HARUTO_AUTH;
 const HARUTO_ADMIN_SESSION_KEY = (A && A.KEY) || "haruto_portfolio_admin";
+const HARUTO_LEGACY_SESSION_KEY = "haruto_token";
 
 const menuBtn = document.getElementById("menuBtn");
 const menu = document.getElementById("menu");
@@ -13,12 +14,20 @@ const moreAdminSection = document.getElementById("moreAdminSection");
 const authLogout = document.getElementById("authLogout");
 
 function isAdminSession() {
-  return sessionStorage.getItem(HARUTO_ADMIN_SESSION_KEY) === "1";
+  return (
+    sessionStorage.getItem(HARUTO_ADMIN_SESSION_KEY) === "1" ||
+    !!sessionStorage.getItem(HARUTO_LEGACY_SESSION_KEY)
+  );
 }
 
 function setAdminSession(active) {
-  if (active) sessionStorage.setItem(HARUTO_ADMIN_SESSION_KEY, "1");
-  else sessionStorage.removeItem(HARUTO_ADMIN_SESSION_KEY);
+  if (active) {
+    sessionStorage.setItem(HARUTO_ADMIN_SESSION_KEY, "1");
+    sessionStorage.setItem(HARUTO_LEGACY_SESSION_KEY, "1");
+  } else {
+    sessionStorage.removeItem(HARUTO_ADMIN_SESSION_KEY);
+    sessionStorage.removeItem(HARUTO_LEGACY_SESSION_KEY);
+  }
 }
 
 function setMoreOpen(open) {

@@ -1158,6 +1158,13 @@ body.dashboard-body {
   color: var(--accent);
 }
 
+.dash-fieldset__actions {
+  margin-top: 0.9rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .dash-grid {
   display: grid;
   gap: 0.65rem 1rem;
