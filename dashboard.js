@@ -178,6 +178,18 @@
     bodyTa.value = data.body != null ? String(data.body) : "";
     block.appendChild(bodyTa);
 
+    var lblLink = document.createElement("span");
+    lblLink.className = "dash-label";
+    lblLink.textContent = "Төслийн холбоос (дарвал шинэ таб)";
+    block.appendChild(lblLink);
+
+    var linkIn = document.createElement("input");
+    linkIn.type = "url";
+    linkIn.className = "dash-input dash-prj-link";
+    linkIn.placeholder = "https://example.com эсвэл github.com/…";
+    linkIn.value = data.linkUrl != null ? String(data.linkUrl) : "";
+    block.appendChild(linkIn);
+
     bindProjectBlock(block);
     return block;
   }
@@ -267,12 +279,14 @@
       var iconClass = (node.querySelector(".dash-prj-icon") || {}).value.trim();
       var title = (node.querySelector(".dash-prj-title") || {}).value.trim();
       var body = (node.querySelector(".dash-prj-body") || {}).value.trim();
+      var linkUrl = (node.querySelector(".dash-prj-link") || {}).value.trim();
       if (!title && !body && !imageUrl && !iconClass) return;
       out.push({
         iconClass: iconClass,
         title: title,
         body: body,
         imageUrl: imageUrl,
+        linkUrl: linkUrl,
       });
     });
     return out;
@@ -341,6 +355,7 @@
         title: p.title || "",
         body: p.body || "",
         imageUrl: p.imageUrl || "",
+        linkUrl: p.linkUrl || "",
       };
     });
     renderProjectsEditor(prj);
@@ -441,6 +456,7 @@
             title: p.title,
             body: p.body,
             imageUrl: p.imageUrl || "",
+            linkUrl: p.linkUrl || "",
           };
         });
       }
@@ -549,7 +565,13 @@
       var list = $("dashProjectsList");
       if (!list) return;
       list.appendChild(
-        createProjectBlock({ iconClass: "fa-solid fa-code", title: "", body: "", imageUrl: "" })
+        createProjectBlock({
+          iconClass: "fa-solid fa-code",
+          title: "",
+          body: "",
+          imageUrl: "",
+          linkUrl: "",
+        })
       );
       refreshProjectIndices();
     });

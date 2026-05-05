@@ -644,6 +644,18 @@ h3 span {
     background-color 260ms ease;
 }
 
+a.project-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a.project-card:focus-visible {
+  outline: 2px solid rgba(255, 177, 44, 0.85);
+  outline-offset: 3px;
+}
+
 .card:hover,
 .project-card:hover,
 .skill:hover,

@@ -71,18 +71,21 @@
           title: "Calculator App",
           body: "Dark theme энгийн calculator төсөл.",
           imageUrl: "",
+          linkUrl: "",
         },
         {
           iconClass: "fa-solid fa-code",
           title: "Portfolio Clone",
           body: "Responsive portfolio UI reconstruction.",
           imageUrl: "",
+          linkUrl: "",
         },
         {
           iconClass: "fa-solid fa-briefcase",
           title: "Business Site",
           body: "Танилцуулга website for small business.",
           imageUrl: "",
+          linkUrl: "",
         },
       ],
       skills: [
@@ -155,6 +158,18 @@
     if (el && value != null) el.setAttribute(attr, String(value));
   }
 
+  /** Холбоосыг аюулгүй, шинэ табтай ажиллахаар нормчилно. */
+  function normalizeProjectLink(raw) {
+    var s = raw != null ? String(raw).trim() : "";
+    if (!s) return "";
+    var lower = s.toLowerCase();
+    if (lower.indexOf("javascript:") === 0) return "";
+    if (/^https?:\/\//i.test(s)) return s;
+    if (s.indexOf("/") === 0 && s.indexOf("//") !== 0) return s;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(s)) return s;
+    return "https://" + s.replace(/^\/+/, "");
+  }
+
   function apply(content) {
     if (!document.querySelector("main")) return;
 
@@ -224,8 +239,16 @@
         var imgUrl = row.imageUrl != null ? String(row.imageUrl).trim() : "";
         var iconClass = row.iconClass != null ? String(row.iconClass).trim() : "";
         if (!title && !body && !imgUrl && !iconClass) return;
-        var art = document.createElement("article");
-        art.className = "panel project-card";
+        var href = normalizeProjectLink(row.linkUrl);
+        var root = href
+          ? document.createElement("a")
+          : document.createElement("article");
+        root.className = "panel project-card";
+        if (href) {
+          root.href = href;
+          root.target = "_blank";
+          root.rel = "noopener noreferrer";
+        }
         var thumb = document.createElement("div");
         thumb.className = "thumb";
         if (imgUrl) {
@@ -244,10 +267,10 @@
         h.textContent = title;
         var p = document.createElement("p");
         p.textContent = body;
-        art.appendChild(thumb);
-        art.appendChild(h);
-        art.appendChild(p);
-        projGrid.appendChild(art);
+        root.appendChild(thumb);
+        root.appendChild(h);
+        root.appendChild(p);
+        projGrid.appendChild(root);
       });
     }
 
